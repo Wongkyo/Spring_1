@@ -11,6 +11,9 @@ public class BankbookService {
 	@Autowired
 	private BankBookDAO bakBankBookDAO;
 	
+	public BankBookDTO getSelect(BankBookDTO bankBookDTO)throws Exception{
+		return bakBankBookDAO.getSelect(bankBookDTO);
+	}
 	
 	public List<BankBookDTO> getList()throws Exception {
 	     

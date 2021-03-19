@@ -44,7 +44,7 @@ public class BankBookDAO {
 		}
 	
 	
-		public BankBookDTO getSelect(long bookNumber)throws Exception{ //long 저거 뱅크북디티오  추천
+		public BankBookDTO getSelect(BankBookDTO bankBookDTO)throws Exception{ //long 저거 뱅크북디티오  추천
 			//1. 로그인 정보 
 			String user="user01";
 			String password="user01";
@@ -61,12 +61,11 @@ public class BankBookDAO {
 			
 			PreparedStatement st = con.prepareStatement(sql);
 			
-			st.setLong(1, bookNumber);
+			st.setLong(1, bankBookDTO.getBookNumber());
 			
 			ResultSet rs = st.executeQuery();
 			
-			BankBookDTO bankBookDTO= null;
-			
+		
 			if(rs.next()) {
 				bankBookDTO = new BankBookDTO();
 				bankBookDTO.setBookNumber(rs.getLong("bookNumber"));
@@ -74,6 +73,8 @@ public class BankBookDAO {
 				bankBookDTO.setBookRate(rs.getDouble("bookRate"));
 				bankBookDTO.setBookSale(rs.getString("bookSale"));
 				
+			}else {
+				bankBookDTO=null;
 			}
 			
 			rs.close();

@@ -26,7 +26,9 @@ public class BankBookController {
 	
 	// 상품 상세
 	@RequestMapping(value = "/bankbook/bankbookSelect")
-	public ModelAndView bankbookAdd(ModelAndView modelAndView) throws Exception{
+	public ModelAndView bankbookSelect(BankBookDTO bankBookDTO, ModelAndView modelAndView) throws Exception{
+		bankBookDTO = bankbookService.getSelect(bankBookDTO);
+		modelAndView.addObject("dto", bankBookDTO);
 		modelAndView.setViewName("bankbook/bankbookSelect");
 		return modelAndView;
 	}	
